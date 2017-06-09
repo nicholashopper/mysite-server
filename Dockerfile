@@ -45,7 +45,7 @@ COPY supervisor-app.conf /etc/supervisor/conf.d/
 RUN git clone https://github.com/nicholashopper/mysite-backend.git /home/docker/code/app
 
 # My React project repo (relevant files)
-RUN curl -o /home/docker/code/bundle.js https://raw.githubusercontent.com/nicholashopper/mysimaster/www/bundle.js
+RUN curl -o /home/docker/code/bundle.js https://raw.githubusercontent.com/nicholashopper/mysite-frontend/master/www/bundle.js
 RUN curl -o /home/docker/code/index.html https://raw.githubusercontent.com/nicholashopper/mysite-frontend/master/www/index.html
 
 # COPY requirements.txt and RUN pip install BEFORE adding the rest of your code, this will cause Docker's caching mechanism
