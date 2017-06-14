@@ -44,9 +44,9 @@ COPY supervisor-app.conf /etc/supervisor/conf.d/
 # My Django project repo
 RUN git clone https://github.com/nicholashopper/mysite-backend.git /home/docker/code/app
 
-# My React project repo (relevant files)
-RUN curl -o /home/docker/code/bundle.js https://raw.githubusercontent.com/nicholashopper/mysite-frontend/master/www/bundle.js
-RUN curl -o /home/docker/code/index.html https://raw.githubusercontent.com/nicholashopper/mysite-frontend/master/www/index.html
+# My Angular frontend
+RUN git clone https://github.com/nicholashopper/mysite-frontend.git /home/docker/code/frontend
+RUN chmod -R 755 /home/docker/code/frontend/node_modules
 
 # COPY requirements.txt and RUN pip install BEFORE adding the rest of your code, this will cause Docker's caching mechanism
 # to prevent re-installing (all your) dependencies when you made a change a line or two in your app.
