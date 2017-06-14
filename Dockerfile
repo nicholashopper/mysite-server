@@ -35,26 +35,19 @@ RUN apt-get update && \
 
 # install uwsgi now because it takes a little while
 RUN pip3 install uwsgi
+COPY ./uwsgi.ini /home/docker/code/uwsgi.ini
+COPY ./uwsgi_params /home/docker/code/uwsgi_params
 
 # setup all the configfiles
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY nginx-app.conf /etc/nginx/sites-available/default
 COPY supervisor-app.conf /etc/supervisor/conf.d/
 
-# My Django project repo
-RUN git clone https://github.com/nicholashopper/mysite-backend.git /home/docker/code/app
-
-# My Angular frontend
-RUN git clone https://github.com/nicholashopper/mysite-frontend.git /home/docker/code/frontend
-RUN chmod -R 755 /home/docker/code/frontend/node_modules
 
 # COPY requirements.txt and RUN pip install BEFORE adding the rest of your code, this will cause Docker's caching mechanism
 # to prevent re-installing (all your) dependencies when you made a change a line or two in your app.
+COPY ./app/requirements.txt /home/docker/code/app/requirements.txt
 RUN pip3 install -r /home/docker/code/app/requirements.txt
-
-# add (the rest of) our code
-COPY . /home/docker/code/
-
 
 # install django, normally you would remove this step because your project would already
 # be installed in the code/app/ directory
