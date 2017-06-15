@@ -42,6 +42,8 @@ COPY ./uwsgi_params /home/docker/code/uwsgi_params
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY nginx-app.conf /etc/nginx/sites-available/default
 COPY supervisor-app.conf /etc/supervisor/conf.d/
+COPY ./nginx.crt /etc/nginx/ssl/nginx.crt
+COPY ./nginx.key /etc/nginx/ssl/nginx.key
 
 
 # COPY requirements.txt and RUN pip install BEFORE adding the rest of your code, this will cause Docker's caching mechanism
@@ -54,4 +56,5 @@ RUN pip3 install -r /home/docker/code/app/requirements.txt
 # RUN django-admin.py startproject website /home/docker/code/app/
 
 EXPOSE 80
+EXPOSE 443
 CMD ["supervisord", "-n"]
