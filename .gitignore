@@ -1,4 +1,3 @@
 Dockerfile-dev
-run-dev.sh
 app
 frontend
