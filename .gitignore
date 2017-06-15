@@ -1,6 +1,6 @@
 Dockerfile-dev
 app
 frontend
-.ssl/
 *.key
 *.crt
+*.csr

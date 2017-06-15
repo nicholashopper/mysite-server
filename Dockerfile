@@ -42,8 +42,9 @@ COPY ./uwsgi_params /home/docker/code/uwsgi_params
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY nginx-app.conf /etc/nginx/sites-available/default
 COPY supervisor-app.conf /etc/supervisor/conf.d/
-COPY ./nginx.crt /etc/nginx/ssl/nginx.crt
-COPY ./nginx.key /etc/nginx/ssl/nginx.key
+COPY ./nicholas.works.crt /etc/nginx/ssl/nginx.crt
+COPY ./nicholas.works.key /etc/nginx/ssl/nginx.key
+COPY ./nicholas.works.csr /etc/nginx/ssl/nginx.csr
 
 
 # COPY requirements.txt and RUN pip install BEFORE adding the rest of your code, this will cause Docker's caching mechanism
