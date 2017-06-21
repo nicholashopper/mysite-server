@@ -40,8 +40,8 @@ COPY ./uwsgi_params /home/docker/code/uwsgi_params
 
 # setup all the configfiles
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-COPY nginx-app.conf /etc/nginx/sites-available/default
-COPY supervisor-app.conf /etc/supervisor/conf.d/
+COPY nginx.conf /etc/nginx/sites-available/default
+COPY supervisor.conf /etc/supervisor/conf.d/
 COPY ./nicholas.works.crt /etc/nginx/ssl/nginx.crt
 COPY ./nicholas.works.key /etc/nginx/ssl/nginx.key
 COPY ./nicholas.works.csr /etc/nginx/ssl/nginx.csr
